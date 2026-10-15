@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JWT Decoder</title>
+<link rel="icon" href="icon.svg">
+<link rel="stylesheet" href="base.css">
+<style>
+  main{max-width:56rem}
+  textarea{width:100%;min-height:7rem;font:13px/1.5 ui-monospace,Menlo,Consolas,monospace;word-break:break-all;margin:.75rem 0 .25rem}
+  .parts{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+  @media (max-width:44rem){.parts{grid-template-columns:1fr}}
+  h2{font-size:1rem;margin:0 0 .35rem}
+  pre{margin:0;padding:.75rem;border:1px solid var(--line);border-radius:.5rem;background:var(--card);overflow:auto;font:13px/1.5 ui-monospace,Menlo,Consolas,monospace}
+  .claims{margin-top:1rem;display:grid;gap:.3rem;font-size:.95rem}
+  .claims div{display:flex;gap:.5rem;flex-wrap:wrap}
+  .claims b{min-width:5rem}
+  .bad{color:var(--bad);font-weight:600}.good{color:var(--good);font-weight:600}
+  .err{color:var(--bad);font-weight:600;min-height:1.4rem}
+  .note{color:var(--muted);font-size:.85rem;margin-top:1rem}
+</style>
+</head>
+<body>
+<main>
+  <h1>JWT Decoder</h1>
+  <p class="sub">Paste a JSON Web Token to read its header and claims. Decoding happens here; the token is never sent anywhere.</p>
+  <textarea id="token" spellcheck="false" aria-label="Token">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFkYSBMb3ZlbGFjZSIsImlhdCI6MTcwMDAwMDAwMCwiZXhwIjoxOTAwMDAwMDAwfQ.signature-not-checked</textarea>
+  <p class="err" id="err" role="status"></p>
+  <div class="parts">
+    <section><h2>Header</h2><pre id="header"></pre></section>
+    <section><h2>Payload</h2><pre id="payload"></pre></section>
+  </div>
+  <div class="claims" id="claims"></div>
+  <p class="note">This shows what a token says. It doesn't check the signature, so it can't tell you whether the token is genuine.</p>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
